@@ -17,8 +17,6 @@ class MisAjoure {
 
   static bool update = true;
   Future<bool> getusers() async {
-
-    
     List<Map<String, dynamic>> res = await db().select("SELECT * FROM user");
     int count = res.length;
 
@@ -32,7 +30,7 @@ class MisAjoure {
           var jsonList = jsonDecode(utf8.decode(response.bodyBytes));
           List<Map<String, dynamic>> data =
               jsonList.cast<Map<String, dynamic>>();
-
+          print("********************************************************************************************status 200");
           for (Map<String, dynamic> i in data) {
             int iduser = i['id'];
             int tel = i['tel'];
@@ -49,8 +47,11 @@ class MisAjoure {
           }
         } else {
           print('Error: ${response.statusCode}');
+                  print("********************************************************************************************status code 400");
+
         }
       } catch (e) {
+        print("********************************************************************************************status 400");
         print('Error fetching data: $e');
       }
     }
