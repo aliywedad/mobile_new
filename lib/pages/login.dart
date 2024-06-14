@@ -45,19 +45,19 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void getLogin(String email, String password, BuildContext context) async {
-List res = await db().select("select * from user  ");
-    if(res.length == 0){
+    List res = await db().select("select * from user  ");
+    print("\n \n \n ");
+
+    print("${res.length} user ");
+
+    print("\n \n \n ");
+    if (res.length == 0) {
       await MisAjoure().getusers();
     }
-   
 
     if (email == "" || password == "") {
-              
-
       Tost().alert(
-        
           context, "Remplissez tous les champs", Colors.red, Icons.warning);
-
     } else {
       List response =
           await db().select("select * from user where email='${email}'");

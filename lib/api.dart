@@ -18,7 +18,5 @@ class Api {
  static const typeInfra = ip+"TypeInfra/";
  static const InfraVillage = ip+"InfraVillage/";
  static const Upload_Reponses = ip+"Upload_Reponses/";
-
-
 }
  
