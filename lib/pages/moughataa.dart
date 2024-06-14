@@ -105,7 +105,7 @@ class _MoughataaState extends State<Moughataa> {
         title: widget.nomWilaya.isNotEmpty
             ? Text(
                 'Les Moughataa du ${widget.nomWilaya}',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
               )
             : 
             Text(
@@ -113,6 +113,7 @@ class _MoughataaState extends State<Moughataa> {
                 style: TextStyle(fontSize: 18),
               ),
         backgroundColor: Colors.white,
+        centerTitle: true,
       ),
       
       body: Column(

@@ -112,76 +112,85 @@ class _ListFormulairesState extends State<ListFormulaires> {
       }
      
   }
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.white,
+    body: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 1.0, bottom: 30.0), // Adjust the padding as needed
+          child: Text(
+            'Enregistrements',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Expanded(
+          child: dataList.isEmpty
+              ? Center(child: CircularProgressIndicator()) // Loading indicator
+              : ListView.builder(
+                  itemCount: dataList.length,
+                  itemBuilder: (context, index) {
+                    var item = dataList[index];
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: dataList.isEmpty
-          ? Center(
-              child: CircularProgressIndicator()) // Indicateur de chargement
-          : ListView.builder(
-              itemCount: dataList.length,
-              itemBuilder: (context, index) {
-                var item = dataList[index];
-
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => FormulaireDetails(
-                          idFormulaire: item['id'], // ID du formulaire
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FormulaireDetails(
+                              idFormulaire: item['id'], // ID of the form
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 15),
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.blueGrey[50],
+                          borderRadius: BorderRadius.circular(10), // Rounded corners
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 7,
+                              offset: Offset(0, 3),
+                            ),
+                          ],
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.library_books,
+                                    color: Color.fromARGB(255, 189, 189, 189)), // Icon on the left
+                                SizedBox(width: 15), // Space between icon and text
+                                Text(
+                                  item['titre'] ?? "", // Name of the form
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Icon(Icons.arrow_forward_ios, color: Colors.grey), // Arrow on the right
+                          ],
                         ),
                       ),
                     );
                   },
-                  child: Container(
-                    margin: const EdgeInsets.symmetric(
-                        vertical: 10, horizontal: 15),
-                    padding: const EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.blueGrey[50],
-                      borderRadius: BorderRadius.circular(10), // Coins arrondis
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.grey.withOpacity(0.5),
-                          spreadRadius: 2,
-                          blurRadius: 7,
-                          offset: Offset(0, 3),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      // Pour aligner horizontalement
-                      mainAxisAlignment:
-                          MainAxisAlignment.spaceBetween, // Correction du terme
-                      children: [
-                        Row(
-                          // Pour aligner l'icône et le texte
-                          children: [
-                            Icon(Icons.library_books,
-                                color: Color.fromARGB(
-                                    255, 189, 189, 189)), // Icône à gauche
-                            SizedBox(
-                                width: 15), // Espace entre l'icône et le texte
-                            Text(
-                              item['titre'] ?? "", // Nom du formulaire
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Icon(Icons.arrow_forward_ios,
-                            color: Colors.grey), // Flèche à droite
-                      ],
-                    ),
-                  ),
-                );
-              },
-            ),
-    );
-  }
+                ),
+        ),
+      ],
+    ),
+  );
+}
 }

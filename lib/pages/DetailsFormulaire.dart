@@ -400,9 +400,12 @@ class _FormulaireDetailsState extends State<FormulaireDetails> {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          
                           color: Colors.black, // Couleur du texte
-                          letterSpacing: 1.2, // Espacement des lettres
+                          letterSpacing: 1.2,
+                           // Espacement des lettres
                         ),
+                        
                       ),
                     ),
 

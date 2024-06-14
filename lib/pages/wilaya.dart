@@ -74,8 +74,18 @@ class _WilayaState extends State<Wilaya> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
-        title: TextField(
-          onChanged: (value) {
+       title:Text(
+          'Wilayas',
+                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+      ),
+      centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Container(
+  padding: const EdgeInsets.all(16.0),
+  child: TextField(
+    onChanged: (value) {
             setState(() {
               filteredList = dataList.where((item) =>
                   item['Nom_wilaya']
@@ -83,15 +93,23 @@ class _WilayaState extends State<Wilaya> {
                       .contains(value.toLowerCase())).toList();
             });
           },
-          decoration: const InputDecoration(
-            labelText: 'Rechercher',
-            border: OutlineInputBorder(),
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          ),
-        ),
+    decoration: InputDecoration(
+      labelText: 'Rechercher',
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        borderSide: BorderSide(color: Colors.blueGrey, width: 2.0),
       ),
-      body: Column(
-        children: [
+      contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      filled: true,
+      fillColor: Colors.blueGrey[50],
+      prefixIcon: Icon(Icons.search, color: Color(0xFF364057)),
+    ),
+    style: TextStyle(
+      color: Color(0xFF364057),
+      fontSize: 16,
+    ),
+  ),
+),
           Expanded(
             child: ListView.builder(
               itemCount: filteredList.length,

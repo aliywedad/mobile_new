@@ -104,13 +104,14 @@ class _ComminState extends State<Commin> {
         title: widget.nomMouhgataa.isNotEmpty
             ? Text(
                 'Les communes du ${widget.nomMouhgataa}',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
               )
             : 
             Text(
                 'Les communes ',
                 style: TextStyle(fontSize: 18),
               ),
+              centerTitle: true,
       ),
       body: 
       Column(

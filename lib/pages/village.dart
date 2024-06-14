@@ -114,7 +114,7 @@ AppBar(
         title: widget.nomCommin.isNotEmpty
             ? Text(
                 'Les villages du ${widget.nomCommin}',
-                style: TextStyle(fontSize: 18),
+                style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
               )
             : 
             Text(
@@ -122,12 +122,13 @@ AppBar(
                 style: TextStyle(fontSize: 18),
               ),
         backgroundColor: Colors.white,
+        centerTitle: true,
       ),
  
       body:
        Column(
          children: [
-                            Container(
+                  Container(
   padding: const EdgeInsets.all(16.0),
   child: TextField(
     onChanged: (value) {

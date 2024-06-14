@@ -52,21 +52,40 @@ class _Liste_DAState extends State<Liste_DA> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: ListView(
-        padding: const EdgeInsets.all(20),
-        children: [
-          _buildElementCard("Wilaya"),
-          _buildElementCard("Moughataa"),
-          _buildElementCard("Commune"),
-          _buildElementCard("Village"),
-        ],
-      ),
-    );
-  }
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: Colors.white,
+    body: Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(top: 1.0, bottom: 30.0), // Adjust the padding as needed
+          child: Text(
+            'Division administrative',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+        Expanded(
+          child: ListView(
+            padding: const EdgeInsets.all(20),
+            children: [
+              _buildElementCard("Wilaya"),
+              _buildElementCard("Moughataa"),
+              _buildElementCard("Commune"),
+              _buildElementCard("Village"),
+            ],
+          ),
+        ),
+      ],
+    ),
+  );
+}
+
+
 
   // Function to build each element card
   Widget _buildElementCard(String elementName) {

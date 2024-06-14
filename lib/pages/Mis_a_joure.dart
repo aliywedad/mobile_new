@@ -21,7 +21,6 @@ class MisAjoure {
     
     List<Map<String, dynamic>> res = await db().select("SELECT * FROM user");
     int count = res.length;
-
     if (count > 0) {
       print("$count. user has been inserted");
     } else {
