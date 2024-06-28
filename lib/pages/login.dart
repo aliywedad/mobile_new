@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:mobile/pages/Navbar.dart';
@@ -7,6 +9,8 @@ import '../db.dart';
 import '../components/tost.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../components/Alerts.dart';
+import 'dart:convert'; // For utf8 encoding
+import 'package:crypto/crypto.dart'; // For md5 hashing
 
 void main() {
   runApp(MyApp());
@@ -44,7 +48,14 @@ class _LoginPageState extends State<LoginPage> {
     return dataLoaded;
   }
 
+  String hashPassword(String password) {
+    var bytes = utf8.encode(password);
+    var digest = md5.convert(bytes);
+    return digest.toString();
+  }
+
   void getLogin(String email, String password, BuildContext context) async {
+    String pwd_hached = hashPassword(password);
     List res = await db().select("select * from user  ");
     print("\n \n \n ");
 
@@ -61,12 +72,14 @@ class _LoginPageState extends State<LoginPage> {
     } else {
       List response =
           await db().select("select * from user where email='${email}'");
-      if (response.length == 0) {
+      print(
+          " from db ${response[0]['password']} == ${pwd_hached} %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55");
+      if (response.isEmpty) {
         Tost().alert(context, "Email incorrect", Colors.red, Icons.warning);
         // Alerts()
         //     .SimpleAlert(context, "Email incorrect","ok",  Colors.red, Icons.warning );
         await MisAjoure().getusers();
-      } else if (response[0]['password'] == password) {
+      } else if (response[0]['password'] == pwd_hached) {
         String tel = response[0]['tel'].toString();
         SharedPreferences session = await SharedPreferences.getInstance();
         session.setString("email", email);

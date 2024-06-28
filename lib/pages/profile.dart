@@ -46,20 +46,20 @@ class _ProfilePageState extends State<ProfilePage> {
 @override
 Widget build(BuildContext context) {
   return Scaffold(
-appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Padding(
-            padding: const EdgeInsets.only(left: 188.0, right: 16.0,top: 1.0,bottom: 40.0), // Ajustez les valeurs de marge selon vos besoins
-            child: Text(
-              'Compte Utilisateur',
-              style: TextStyle(
-                color: Colors.black, // Couleur du texte
-                fontSize: 20.0, 
-                fontWeight: FontWeight.bold,// Taille de la police
-              ),
-            ),
-          ),
-),
+// appBar: AppBar(
+//           backgroundColor: Colors.white,
+//           title: Padding(
+//             padding: const EdgeInsets.only(left: 188.0, right: 16.0,top: 1.0,bottom: 40.0), // Ajustez les valeurs de marge selon vos besoins
+//             child: Text(
+//               'Compte Utilisateur',
+//               style: TextStyle(
+//                 color: Colors.black, // Couleur du texte
+//                 fontSize: 20.0, 
+//                 fontWeight: FontWeight.bold,// Taille de la police
+//               ),
+//             ),
+//           ),
+// ),
     backgroundColor: Colors.white,
     body: Padding(
       padding: const EdgeInsets.all(16.0),
@@ -144,20 +144,69 @@ appBar: AppBar(
                         ),
                       ),
                     ),
-                    SizedBox(height: 100),
-                     // Space between the card and the button
-                    Center(
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          await synchron(context);
-                        },
-                        child: Text('Mettre à jour les données'),
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.symmetric(horizontal: 80, vertical: 15), // Adjust padding for the button
-                          textStyle: TextStyle(fontSize: 16), // Adjust text style
+                   
+                   
+
+
+                    GestureDetector(
+                      onTap: () async{
+                        await synchron(context);
+
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 20), // Space at the bottom of the card
+                        padding: const EdgeInsets.all(10), // Inner space
+                        decoration: BoxDecoration(
+                          color: Colors.blueGrey[50],
+                          borderRadius: BorderRadius.circular(10), // Rounded corners
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5), // Soft shadow
+                              spreadRadius: 2,
+                              blurRadius: 5,
+                              offset: Offset(0, 3), // Shadow offset
+                            ),
+                          ],
+                        ),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween, // To keep elements separated
+                          children: [
+                            Row(
+                              children: [
+                                Icon(Icons.update, color: Color.fromARGB(255, 189, 189, 189)), // Icon on the left
+                                SizedBox(width: 10), // Space between icon and text
+                                Text(
+                                  "Mettre à jour les données",
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              ],
+                            ),
+                            Icon(Icons.arrow_forward_ios, color: Colors.grey), // Arrow on the right
+                          ],
                         ),
                       ),
                     ),
+                   
+
+
+
+
+                   
+                    // SizedBox(height: 10),
+                     // Space between the card and the button
+                    // Center(
+                    //   child: ElevatedButton(
+                    //     onPressed: () async {
+                    //       await synchron(context);
+                    //     },
+                    //     child: Text('Mettre à jour les données'),
+                    //     style: ElevatedButton.styleFrom(
+                    //       padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15), // Adjust padding for the button
+                    //       textStyle: TextStyle(fontSize: 16), // Adjust text style
+                    //     ),
+                    //   ),
+                    // ),
+                  
                   ],
                 );
               }
