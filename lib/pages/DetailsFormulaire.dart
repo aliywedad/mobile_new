@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -276,6 +278,81 @@ class _FormulaireDetailsState extends State<FormulaireDetails> {
               fieldValues[question["id"].toString()] = value;
             },
           );
+// ['Pêche en mer' , 'Pêche terrestre' , 'Pêche aerienne' , 'pas de Pêche']
+// ['Riz', 'blé', 'maïs', 'thé', 'haricots', 'pastèque']
+case "radio":
+  var choicesData = question["choices"];
+  List<String> choices = [];
+
+  if (choicesData is String && choicesData.isNotEmpty) {
+    try {
+      var dataWithoutBrackets = choicesData.substring(1, choicesData.length - 1);
+      var elements = dataWithoutBrackets.split(", ").map((e) => e.replaceAll("'", "").trim()).toList();
+      print(elements);
+      print("==========================================================================");
+      choices.addAll(elements);
+    } catch (e) {
+      print("Error parsing choices data: $e");
+    }
+  } else {
+    print("choicesData is not a valid string");
+  }
+
+  return Form(
+    key: GlobalKey<FormState>(),
+    child: DropdownButtonFormField<String>(
+      decoration: InputDecoration(
+        labelText: question['text'],
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2,
+          ),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2,
+          ),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            color: Colors.black,
+            width: 2,
+          ),
+        ),
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+      ),
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 16,
+      ),
+      dropdownColor: Colors.white,
+      items: choices.map((choice) {
+        return DropdownMenuItem<String>(
+          value: choice,
+          child: Text(choice),
+        );
+      }).toList(),
+      onChanged: (String? value) {
+        setState(() {
+          fieldValues[question["id"].toString()] = value;
+        });
+        print("Nouvelle sélection pour la question ${question["id"]}: $value");
+      },
+      onSaved: (value) {
+        fieldValues[question["id"].toString()] = value;
+      },
+    ),
+  );
+
+
+
 
         case "choices":
           var choicesData = question["choices"];
@@ -285,6 +362,9 @@ class _FormulaireDetailsState extends State<FormulaireDetails> {
             var dataWithoutBrackets =
                 choicesData.substring(2, choicesData.length - 2);
             var elements = dataWithoutBrackets.split("', '");
+            print(elements);
+            print(
+                "==========================================================================");
             choices.addAll(elements);
           } else {
             print("choicesData n'est pas une chaîne de caractères valide");
@@ -345,6 +425,11 @@ class _FormulaireDetailsState extends State<FormulaireDetails> {
             ),
           );
 
+
+
+
+
+
         default:
           return Text('Type de question inconnu');
       }
@@ -362,7 +447,7 @@ class _FormulaireDetailsState extends State<FormulaireDetails> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text('Détails du Formulaire'),
-        backgroundColor:Colors.white ,
+        backgroundColor: Colors.white,
       ),
       body: isLoading
           ? Center(child: CircularProgressIndicator())
@@ -400,12 +485,11 @@ class _FormulaireDetailsState extends State<FormulaireDetails> {
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
-                          
+
                           color: Colors.black, // Couleur du texte
                           letterSpacing: 1.2,
-                           // Espacement des lettres
+                          // Espacement des lettres
                         ),
-                        
                       ),
                     ),
 

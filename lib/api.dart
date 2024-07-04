@@ -1,7 +1,9 @@
+// ignore_for_file: prefer_interpolation_to_compose_strings, constant_identifier_names
+
 class Api {
-    // bool update=false  ;
+
   // static const String ip = 'https://aliy22086.pythonanywhere.com/';
-  static const String ip = 'http://192.168.100.153:8000/';
+  static const String ip = 'http://192.168.43.226:8000/';
   static const wilaya = ip+"list_wilaya/";
   static const moughataa = ip+"list_Maghataa/";
   static const connexion = ip+"Connexion/";

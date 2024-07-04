@@ -326,7 +326,7 @@ Future<bool> synchron(BuildContext context) async {
         int formilair = i['formilair'] ?? 0;
         int response = await db().insrt(""" INSERT INTO 'question'
                 (id, formilair_id,text,type,choices,categorie) 
-                VALUES ( ${idQ},'${formilair}','${text}','${type}','${choices}','${categorie}'); """);
+                VALUES ( ${idQ},'${formilair}',"${text}",'${type}',"${choices}",'${categorie}'); """);
         if (response == 1) {
           done++;
         } else {
@@ -425,7 +425,7 @@ Future<bool> synchron(BuildContext context) async {
 
         int response = await db().insrt(""" INSERT INTO 'village'
              (NumeroVillage, idCommit,NomAdministratifVillage,NomLocal,DistanceChefLieu,DateCreation,DistanceAxesPrincipaux,CompositionEthnique,AutresInfosVillage) 
-            VALUES (${idvillage},${IDCommin},'${nomAdministratif}','${NomLocal}',${DistanceChefLieu},${DateCreation} ,${DistanceAxesPrincipaux},'${CompositionEthnique}'," "); """);
+            VALUES (${idvillage},${IDCommin},"${nomAdministratif}","${NomLocal}",${DistanceChefLieu},${DateCreation} ,${DistanceAxesPrincipaux},'${CompositionEthnique}'," "); """);
       }
     } else {
       print('Error: ${response.statusCode}');
